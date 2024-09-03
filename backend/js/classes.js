@@ -134,7 +134,6 @@ class Player {
 				this.rackTiles[t].rackIndex = t;
 			else {
 				let bagIndex = Math.floor(Math.random() * Game.tileBag.length);
-				// let bagIndex = Game.tileBag.length - 1;
 				let tile = Game.tileBag.splice(bagIndex, 1)[0];
 				tile.state = "rack";
 				tile.rackIndex = t;
