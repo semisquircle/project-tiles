@@ -112,12 +112,6 @@
 	margin-right: 0.4em;
 }
 
-@font-face {
-	font-family: "Doyle";
-	font-weight: 900;
-	font-style: italic;
-	src: url("https://semishawn.github.io/semipedia/fonts/doyle/Doyle-BlackItalic.woff2");
-}
 .semipedia-text2 {
 	font-family: "Doyle";
 	font-weight: 900;
