@@ -1,0 +1,138 @@
+.title-screen {justify-content: space-between;}
+
+
+
+/* Logo */
+.title-logo-container {
+	margin: 0 auto;
+	margin-top: -1rem;
+}
+
+.logo-text1 {
+	--border-width: calc(1 * var(--input-border-width));
+	--border-color: var(--ui-color2);
+	position: relative;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100%;
+	font-family: var(--font2);
+	font-size: 4rem;
+	font-weight: 700;
+	font-style: italic;
+}
+
+.logo-top-text {position: relative;}
+.logo-top-text div:nth-child(1) {
+	position: absolute;
+	color: var(--border-color);
+	-webkit-text-stroke-width: calc(2 * var(--border-width));
+	-webkit-text-stroke-color: var(--border-color);
+	z-index: 11;
+}
+.logo-top-text div:nth-child(2) {
+	color: var(--ui-color3);
+	z-index: 12;
+}
+
+.logo-bars {
+	position: absolute;
+	left: 50%;
+	width: 200%;
+	height: 0.54em;
+	margin-top: 0.24em;
+	border: var(--border-width) solid var(--border-color);
+	overflow: hidden;
+	z-index: 10;
+	box-sizing: content-box;
+	transform: translateX(-50%);
+}
+
+.logo-bars div {
+	width: 100%;
+	height: 100%;
+	background: black;
+}
+.logo-bars div:nth-child(1) {background: var(--dl-bg-color);}
+.logo-bars div:nth-child(2) {background: var(--dw-bg-color);}
+.logo-bars div:nth-child(3) {background: var(--tl-bg-color);}
+.logo-bars div:nth-child(4) {background: var(--tw-bg-color);}
+
+.logo-text2 {
+	flex-direction: row;
+	margin-top: 0.3rem;
+}
+
+.logo-tile {
+	--btn-inside-color: var(--tile-bg-color);
+	--btn-stalk-color: var(--tile-border-color);
+	--btn-font-color: var(--tile-font-color);
+	--tile-multiplier: 3.5;
+	width: calc(var(--tile-multiplier) * var(--tile-width));
+	height: calc(var(--tile-multiplier) * var(--tile-ratio) * var(--tile-width));
+	font-size: calc(0.7 * var(--tile-multiplier) * var(--tile-width));
+	font-weight: 900;
+	pointer-events: none;
+}
+.logo-tile + .logo-tile {margin-left: calc(-1 * var(--input-border-width));}
+.logo-tile.logo-tile-hover {--current-extend: 0.25rem;}
+
+.logo-tile-letter {
+	position: absolute;
+	opacity: 0;
+	transition: none;
+	-webkit-transition: none;
+}
+.logo-tile-letter:nth-child(1) {opacity: 1;}
+/* .logo-tile:nth-child(1) .logo-tile-letter:nth-child(3) {transform: translateY(-25%);}
+.logo-tile:nth-child(3) .logo-tile-letter:nth-child(5) {transform: translateY(-25%);} */
+
+
+
+/* Bottom container */
+.title-bottom-container {
+	align-items: center;
+	align-self: center;
+	width: 100%;
+}
+
+.semipedia-text {
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	font-size: 0.8rem;
+	font-style: italic;
+	opacity: 0.4;
+	margin-bottom: 0.45rem;
+}
+
+.semipedia-text1 {
+	font-size: 0.8em;
+	margin-right: 0.4em;
+}
+
+@font-face {
+	font-family: "Doyle";
+	font-weight: 900;
+	font-style: italic;
+	src: url("https://semishawn.github.io/semipedia/fonts/doyle/Doyle-BlackItalic.woff2");
+}
+.semipedia-text2 {
+	font-family: "Doyle";
+	font-weight: 900;
+	line-height: 1;
+}
+
+.title-btn-container {
+	flex-direction: row;
+}
+
+.title-btn-container .btn {
+	width: 11rem;
+	height: 2.8rem;
+}
+.title-btn-container .btn + .btn {margin-left: calc(-1 * var(--input-border-width))}
+.title-about-btn {display: none;}
+.title-about-btn svg {margin-right: 0.3rem;}
+.title-play-btn svg {margin-left: 0.3rem;}

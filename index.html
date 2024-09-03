@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Plugins -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="frontend/fonts/fonts.css">
+	<link rel="stylesheet" href="frontend/css/variables.css">
+	<link rel="stylesheet" href="frontend/css/main.css">
+	<link rel="stylesheet" href="frontend/css/title.css">
+	<link rel="stylesheet" href="frontend/css/screens.css">
+	<link rel="stylesheet" href="frontend/css/play.css">
+</head>
+
+<body data-theme="hasbro">
+	<main>
+		<div class="screen title-screen">
+			<div class="title-logo-container">
+				<div class="logo-text1">
+					<div class="logo-top-text">
+						<div>project</div>
+						<div>project</div>
+					</div>
+
+					<div class="logo-bars">
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+				</div>
+
+				<div class="logo-text2">
+					<div class="btn logo-tile"></div>
+					<div class="btn logo-tile"></div>
+					<div class="btn logo-tile"></div>
+					<div class="btn logo-tile"></div>
+					<div class="btn logo-tile"></div>
+				</div>
+			</div>
+
+			<div class="title-bottom-container">
+				<div class="semipedia-text">
+					<div class="semipedia-text1">Brought to you by</div>
+					<div class="semipedia-text2">Semipedia</div>
+				</div>
+
+				<div class="title-btn-container">
+					<div class="btn important-btn title-about-btn">How to Play</div>
+					<div class="btn important-btn title-play-btn">Begin</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="screen lang-screen">
+			<div class="header-container">
+				<div class="btn important-btn back-btn">Back</div>
+				<div class="header">Select a Language</div>
+				<div class="btn important-btn continue-btn" disabled>Continue</div>
+			</div>
+
+			<div class="btn-grid lang-container"></div>
+		</div>
+	
+		<div class="screen edition-screen">
+			<div class="header-container">
+				<div class="btn important-btn back-btn">Back</div>
+				<div class="header">Select an Edition</div>
+				<div class="btn important-btn continue-btn" disabled>Continue</div>
+			</div>
+	
+			<div class="edition-info-bar">
+				<div class="edition-lang-container">
+					<div class="edition-lang-exonym"></div>
+					<div class="edition-lang-endonym"></div>
+				</div>
+
+				<div class="edition-icon-info-container">
+					<div class="edition-icon-info-row">
+						<div class="edition-icon-info-text">Official Scrabble product</div>
+					</div>
+					
+					<div class="edition-icon-info-row">
+						<div class="edition-icon-info-text">Sold in stores</div>
+					</div>
+
+					<div class="edition-icon-info-row">
+						<div class="edition-icon-info-text">Sourced online</div>
+					</div>
+				</div>
+			</div>
+	
+			<div class="btn-grid edition-options-container"></div>
+		</div>
+	
+		<div class="screen players-screen" data-goes-first="">
+			<div class="header-container">
+				<div class="btn important-btn back-btn">Back</div>
+				<div class="header">Meet Your Opponent</div>
+				<div class="btn important-btn continue-btn" disabled>Continue</div>
+			</div>
+
+			<div class="player-intro-container">
+				<div class="player-intro user-intro">
+					<div class="player-icon"></div>
+					<div class="player-intro-name-wrapper">
+						<div class="player-intro-name-edit-container" data-editing="false">
+							<span class="player-intro-name" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></span>
+							<div class="player-intro-edit-icon"></div>
+						</div>
+						<div class="player-intro-descriptor">
+							<span class="player-intro-current-chars">0</span>/<span class="player-intro-char-limit">0</span>
+							characters
+						</div>
+					</div>
+					<div class="player-intro-goes-first">goes first!</div>
+					<div class="player-intro-tile-slot"></div>
+				</div>
+				
+				<div class="player-intro bot-intro">
+					<div class="player-icon"></div>
+					<div class="player-intro-name-wrapper">
+						<div class="player-intro-name"></div>
+						<div class="player-intro-descriptor">
+							<span class="bot-difficulty">Medium</span> difficulty
+						</div>
+					</div>
+					<div class="player-intro-goes-first">goes first!</div>
+					<div class="player-intro-tile-slot"></div>
+				</div>
+
+				<div class="player-intro-goes-first-indicator"></div>
+			</div>
+
+			<div class="player-intro-tilebag-container">
+				<div class="player-intro-info">"The player with the letter closest to <span class="first-letter"></span> goes first. A blank tile beats any letter."</div>
+
+				<div class="player-intro-tilebag" data-clicked="false">
+					<div class="player-intro-tilebag-text">Click to<br>draw tiles</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="screen play-screen" data-dialog="">
+			<div class="play-column-container">
+				<div class="play-column1">
+					<div class="score-container">
+						<div class="score-box user-score-box">
+							<div class="player-icon"></div>
+							<div class="player-name"></div>
+							<div class="player-score"></div>
+						</div>
+	
+						<div class="score-box bot-score-box">
+							<div class="player-icon"></div>
+							<div class="player-name"></div>
+							<div class="player-think">
+								<span>&nbsp;is thinking...</span>
+								<div class="player-timer"></div>
+							</div>
+							<div class="player-score"></div>
+						</div>
+	
+						<div class="current-player-indicator-bg"></div>
+						<div class="current-player-indicator-border"></div>
+					</div>
+		
+					<div class="play-function-container">
+						<div class="done-btns-container">
+							<div class="btn done-btn leave-btn">Leave game</div>
+							<div class="btn done-btn restart-btn">Restart game</div>
+							<div class="btn done-btn resign-btn">Resign</div>
+						</div>
+		
+						<div class="tilebag-wrapper">
+							<div class="tilebag-icon">
+								<div class="tilebag-dispenser"></div>
+
+								<div class="tilebag-text">
+									<div class="tilebag-count-text">
+										<div class="tilebag-count">0</div>
+										<div class="tilebag-tile-text">tiles left</div>
+									</div>
+		
+									<div class="tilebag-hover-text">Take a<br>peek!</div>
+								</div>
+							</div>
+		
+							<div class="tilebag-inside-container">
+								<div class="tilebag-scroll-container hide-scrollbar">
+									<div class="tilebag-scroll-text">Scroll</div>
+									<div class="tilebag-tiles-container"></div>
+								</div>
+		
+								<div class="tilebag-timer">
+									<div class="tilebag-timer-bar"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+		
+					<div class="play-history-container">
+						<div class="play-history-title">Play History</div>
+	
+						<div class="play-history-body">
+							<div class="play-history-scroll-container hide-scrollbar"></div>
+						</div>
+		
+						<div class="play-history-input-container">
+							<input class="play-history-textbox" type="text" placeholder="" autocomplete="off">
+							<div class="btn play-history-send-btn" disabled="true"></div>
+						</div>
+					</div>
+				</div>
+		
+				<div class="play-column2">
+					<div class="cell-sizer"></div>
+					<div class="small-tile-sizer"></div>
+					<div class="big-tile-sizer"></div>
+		
+					<div class="board-letter-container"></div>
+					<div class="board-number-container"></div>
+					
+					<div class="board-column">
+						<div class="board">
+							<div class="dialog leave-dialog">
+								<div class="dialog-text">Ditch this game?</div>
+								<div class="dialog-btn-container">
+									<div class="btn dialog-confirm-btn">Confirm</div>
+									<div class="btn dialog-deny-btn">Cancel</div>
+								</div>
+							</div>
+
+							<div class="dialog restart-dialog">
+								<div class="dialog-text">Restart this game?</div>
+								<div class="dialog-btn-container">
+									<div class="btn dialog-confirm-btn">Confirm</div>
+									<div class="btn dialog-deny-btn">Cancel</div>
+								</div>
+							</div>
+	
+							<div class="dialog resign-dialog">
+								<div class="dialog-text">Resign this game?</div>
+								<div class="dialog-btn-container">
+									<div class="btn dialog-confirm-btn">Confirm</div>
+									<div class="btn dialog-deny-btn">Cancel</div>
+								</div>
+							</div>
+
+							<div class="dialog blank-dialog">
+								<div class="dialog-text">Choose a substitute:</div>
+								<div class="btn-grid blank-option-container"></div>
+							</div>
+	
+							<div class="dialog exchange-dialog">
+								<div class="dialog-text">Click tiles to exchange:</div>
+								<div class="rack-tiles"></div>
+								<div class="dialog-btn-container">
+									<div class="btn dialog-confirm-btn">Confirm</div>
+									<div class="btn dialog-deny-btn">Cancel</div>
+								</div>
+							</div>
+
+							<div class="dialog skip-dialog">
+								<div class="dialog-text">Skip your turn?</div>
+								<div class="dialog-btn-container">
+									<div class="btn dialog-confirm-btn">Confirm</div>
+									<div class="btn dialog-deny-btn">Cancel</div>
+								</div>
+							</div>
+						</div>
+		
+						<div class="user-rack-container">
+							<div class="btn rack-btn shuffle-btn"></div>
+							<div class="rack-tiles user-rack-tiles"></div>
+							<div class="btn rack-btn recall-btn"></div>
+						</div>
+		
+						<div class="action-btn-container">
+							<div class="btn action-btn exchange-btn">Exchange tiles</div>
+							<div class="btn action-btn skip-btn">Skip turn</div>
+							<div class="btn action-btn play-btn" disabled="true">
+								Play<span class="turn-points"></span>
+							</div>
+						</div>
+	
+						<div class="rack-tiles bot-rack-tiles"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="screen end-screen" data-winner="">
+			<div class="end-player-container">
+				<div class="end-player user-end">
+					<div class="end-player-ordinal"></div>
+
+					<div class="end-player-info">
+						<span class="end-player-name"></span>
+						<div class="player-icon"></div>
+					</div>
+
+					<div class="end-player-score-container">
+						<div class="end-player-score-wrapper">
+							<div class="end-player-score-info">Total Points</div>
+							<div class="end-player-score-info">Unplayed Tiles</div>
+							<div class="end-player-score-info">Opponent's Tiles</div>
+							<div class="end-player-score-info">Final Score</div>
+	
+							<div class="end-player-total-points"></div>
+							<div class="end-player-math">-</div>
+							<div class="end-player-unplayed-tiles"></div>
+							<div class="end-player-math">+</div>
+							<div class="end-player-opponent-tiles"></div>
+							<div class="end-player-math">=</div>
+							<div class="end-player-final-score"></div>
+						</div>
+					</div>
+
+					<div class="end-player-avg-container">
+						<span>Average per turn</span>
+						<div class="end-player-avg-score"></div>
+					</div>
+				</div>
+
+				<div class="end-player bot-end">
+					<div class="end-player-ordinal"></div>
+
+					<div class="end-player-info">
+						<span class="end-player-name"></span>
+						<div class="player-icon"></div>
+					</div>
+					
+					<div class="end-player-score-container">
+						<div class="end-player-score-wrapper">
+							<div class="end-player-score-info">Total Points</div>
+							<div class="end-player-score-info">Unplayed Tiles</div>
+							<div class="end-player-score-info">Opponent's Tiles</div>
+							<div class="end-player-score-info">Final Score</div>
+	
+							<div class="end-player-total-points"></div>
+							<div class="end-player-math">-</div>
+							<div class="end-player-unplayed-tiles"></div>
+							<div class="end-player-math">+</div>
+							<div class="end-player-opponent-tiles"></div>
+							<div class="end-player-math">=</div>
+							<div class="end-player-final-score"></div>
+						</div>
+					</div>
+
+					<div class="end-player-avg-container">
+						<span>Average per turn</span>
+						<div class="end-player-avg-score"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="end-btn-container">
+				<div class="btn important-btn end-btn rematch-btn">Rematch</div>
+				<div class="btn important-btn end-btn new-edition-btn">New Edition</div>
+				<div class="btn important-btn end-btn save-results-btn">Save Results</div>
+			</div>
+		</div>
+	</main>
+
+	<audio class="play-music" src="frontend/audio/PlayMusic.mp3" loop></audio>
+
+	<script src="backend/js/main.js" async></script>
+	<script src="backend/js/lang.js"></script>
+	<script src="backend/js/boards.js" async></script>
+	<script src="backend/js/classes.js" async></script>
+
+	<script src="frontend/js/main.js" async></script>
+	<script src="frontend/js/icons.js" async></script>
+	<script src="frontend/js/fruit.js" async></script>
+	<script src="frontend/js/screens.js"></script>
+	<script src="frontend/js/play.js" async></script>
+	<script src="frontend/js/tile.js" async></script>
+</body>
+
+</html>

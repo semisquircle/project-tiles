@@ -1,0 +1,120 @@
+:root {
+	--font1: "Noto Sans";
+	--font2: "Noto Serif";
+
+	--ui-color1:                     #ea3c25;
+	--ui-color2:                     white;
+	--ui-color3:                     black;
+
+	--cell-bg-color:                 #eee;
+	--cell-indicator-color:          var(--ui-color3);
+
+	--dl-bg-color:                   #7bbcd4;
+	--dl-font-color:                 var(--ui-color3);
+	--dw-bg-color:                   #eea73c;
+	--dw-font-color:                 var(--ui-color3);
+	--tl-bg-color:                   #1478c1;
+	--tl-font-color:                 var(--ui-color2);
+	--tw-bg-color:                   #ea3c25;
+	--tw-font-color:                 var(--ui-color2);
+	--start-bg-color:                var(--dw-bg-color);
+	--start-font-color:              var(--ui-color3);
+
+	--tile-bg-color:                 #dfc1a3;
+	--tile-font-color:               var(--ui-color3);
+	--tile-border-color:             var(--ui-color2);
+	--tile-placed-rack-border-color: var(--ui-color3);
+
+	--aspect-ratio: calc(4 / 3);
+	--screen-width: 720px;
+
+	--input-border-width: 1px;
+	--indicator-border-width: calc(3 * var(--input-border-width));
+	--input-font-size: 0.43rem;
+
+	--small-tile-width: 1rem;
+	--big-tile-width: 1.3rem;
+	--tile-ratio: 1.03;
+	--tile-width: var(--big-tile-width);
+
+	--z-tile-below:        1000;
+	--z-tile-placed-board: 1001;
+	--z-tile-placed-rack:  1002;
+	--z-tile-between:      1003;
+	--z-tile-rack:         1004;
+	--z-tile-above:        1005;
+	--z-tile-above-above:  1006;
+
+	--input-transition: 0.1s;
+}
+
+[data-theme="mattel"] {
+	--ui-color1:                     #01474f;
+	--ui-color2:                     white;
+	--ui-color3:                     #068898;
+
+	--cell-bg-color:                 #068898;
+	--cell-indicator-color:          var(--ui-color2);
+
+	--dl-bg-color:                   #1e2654;
+	--dl-font-color:                 var(--ui-color2);
+	--dw-bg-color:                   #ffd138;
+	--dw-font-color:                 var(--ui-color2);
+	--tl-bg-color:                   #e5286d;
+	--tl-font-color:                 var(--ui-color2);
+	--tw-bg-color:                   #b7d25a;
+	--tw-font-color:                 var(--ui-color2);
+	--start-bg-color:                var(--dw-bg-color);
+	--start-font-color:              black;
+
+	--tile-bg-color:                 white;
+	--tile-font-color:               black;
+	--tile-border-color:             #aaa;
+	--tile-placed-rack-border-color: #aaa;
+}
+
+[data-theme="semi"] {
+	--ui-color1:                     #a1bdac;
+	--ui-color2:                     black;
+	--ui-color3:                     white;
+
+	--cell-bg-color:                 white;
+	--cell-indicator-color:          var(--ui-color2);
+
+	--dl-bg-color:                   #4cb0ff;
+	--dl-font-color:                 var(--ui-color2);
+	--dw-bg-color:                   #005599;
+	--dw-font-color:                 var(--ui-color3);
+	--tl-bg-color:                   #f8b290;
+	--tl-font-color:                 var(--ui-color2);
+	--tw-bg-color:                   #f26522;
+	--tw-font-color:                 var(--ui-color3);
+	--start-bg-color:                #85de77;
+	--start-font-color:              var(--ui-color3);
+
+	--tile-bg-color:                 #e5dbc5;
+	--tile-font-color:               var(--ui-color2);
+	--tile-border-color:             var(--ui-color2);
+	--tile-placed-rack-border-color: var(--ui-color2);
+}
+
+[data-theme="erudite"] {
+	--cell-bg-color:                 #5e5654;
+	--cell-indicator-color:          black;
+
+	--dl-bg-color:                   #18af70;
+	--dl-font-color:                 #0c5838;
+	--dw-bg-color:                   #21b4ef;
+	--dw-font-color:                 #115a78;
+	--tl-bg-color:                   #f7dd4d;
+	--tl-font-color:                 #7c6f27;
+	--tw-bg-color:                   #eb625b;
+	--tw-font-color:                 #76312e;
+	--start-bg-color:                white;
+	--start-font-color:              white;
+
+	--tile-bg-color:                 black;
+	--tile-font-color:               white;
+	--tile-border-color:             white;
+	--tile-placed-rack-border-color: white;
+}

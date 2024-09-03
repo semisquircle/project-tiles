@@ -1,0 +1,102 @@
+html {font-size: calc(10vw / 3);}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	--body-color: black;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: var(--font1);
+	margin: 0;
+	background: var(--body-color);
+}
+
+* {box-sizing: border-box;}
+
+div, label {
+	display: flex;
+	flex-direction: column;
+}
+
+[type="radio"], [type="checkbox"] {display: none;}
+
+.game-window {
+	--border-width: 4px;
+	--border-radius: 10px;
+	--border-color: var(--tile-bg-color);
+	position: relative;
+	justify-content: flex-start;
+	align-content: flex-start;
+	filter: saturate(90%);
+}
+
+.game-window-tab {
+	--padding: 10px;
+	--overlap: 50px;
+	position: relative;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	font-size: 13px;
+	font-weight: 700;
+	font-style: italic;
+	padding-left: calc(2 * var(--padding));
+	padding-right: calc(2 * var(--padding));
+	padding-top: var(--padding);
+	padding-bottom: calc(var(--overlap) + var(--border-width));
+	margin-bottom: calc(-1 * var(--overlap));
+	background: var(--border-color);
+	border-radius: var(--border-radius);
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.game-window-tab-corner {
+	position: absolute;
+	bottom: var(--overlap);
+	right: calc(-1 * var(--border-radius));
+	width: var(--border-radius);
+	height: var(--border-radius);
+	background: var(--border-color);
+}
+.game-window-tab-corner::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	border-bottom-left-radius: 100%;
+	background: var(--body-color);
+}
+
+.game-window-audio-btn {
+	font-size: 15px;
+	cursor: pointer;
+}
+.fa-volume-high {display: none;}
+input:checked + .game-window-audio-btn .fa-volume-xmark {display: none;}
+input:checked + .game-window-audio-btn .fa-volume-high {display: inline;}
+
+.main-wrapper {
+	padding: var(--border-width);
+	background: var(--border-color);
+	border-radius: calc(var(--border-radius) + var(--border-width));
+}
+
+iframe {
+	position: relative;
+	width: var(--screen-width);
+	height: calc(var(--screen-width) / var(--aspect-ratio));
+	border: 0;
+	border-radius: var(--border-radius);
+	overflow: hidden;
+	box-sizing: content-box;
+}

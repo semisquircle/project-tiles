@@ -1,0 +1,340 @@
+html {font-size: 3.6vw;}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	position: relative;
+	display: flex;
+	font-family: var(--font1), "Noto Sans Arabic", "Noto Sans Armenian", "Noto Sans Hebrew", "Noto Sans JP", "Noto Sans SC", "Noto Sans Tamil";
+	margin: 0;
+	background: var(--ui-color1);
+	color: var(--ui-color2);
+}
+
+* {
+	-webkit-touch-callout: none;
+	  -webkit-user-select: none;
+	   -khtml-user-select: none;
+	     -moz-user-select: none;
+	      -ms-user-select: none;
+	          user-select: none;
+	box-sizing: border-box;
+}
+
+div, label {
+	display: flex;
+	flex-direction: column;
+}
+
+input[type="radio"] {display: none;}
+
+/* Chrome, Safari, Opera */
+.hide-scrollbar::-webkit-scrollbar {
+	-webkit-appearance: none !important;
+	display: none !important;
+	width: 0 !important;
+	background: transparent !important;
+}
+/* IE, Edge, Firefox */
+.hide-scrollbar {
+	scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
+}
+
+.player-icon svg {
+	fill: var(--ui-color2);
+	overflow: visible;
+}
+svg:not(.player-icon svg) {overflow: visible;}
+svg:not(.player-icon svg) path {
+	fill: none;
+	stroke-width: var(--input-border-width);
+	stroke: var(--ui-color2);
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+main {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	transition: margin 0.5s;
+	-webkit-transition: margin 0.5s;
+	will-change: margin;
+}
+
+.screen {
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	padding: 1rem;
+	background: var(--ui-color1);
+	overflow: hidden;
+}
+
+
+
+/** Buttons */
+.btn {
+	--btn-stalk-color: var(--ui-color2);
+	--btn-inside-color: var(--ui-color1);
+	--btn-font-color: var(--ui-color2);
+
+	--current-extend: 0rem;
+	--hover-extend: 0.25rem;
+	--active-extend: var(--hover-extend);
+	--checked-extend: 0.25rem;
+
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 100%;
+	background: var(--btn-stalk-color);
+	cursor: pointer;
+}
+
+.btn * {
+	transition: all var(--input-transition);
+	-webkit-transition: all var(--input-transition);
+}
+
+.btn:hover .btn-inside,
+.btn:hover .btn-stalk
+{--current-extend: var(--hover-extend);}
+input:checked + .btn {--btn-inside-color: var(--ui-color3);}
+input:checked + .btn .btn-inside,
+input:checked + .btn .btn-stalk
+{--current-extend: var(--checked-extend);}
+.btn:active .btn-inside,
+.btn:active .btn-stalk
+{--current-extend: var(--active-extend);}
+
+.btn-inside {
+	position: absolute;
+	bottom: var(--current-extend);
+	right: var(--current-extend);
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	background: var(--btn-inside-color);
+	color: var(--btn-font-color);
+	border: var(--input-border-width) solid var(--btn-stalk-color);
+	cursor: pointer;
+}
+
+.btn-stalk {
+	position: absolute;
+	border: var(--current-extend) solid var(--btn-stalk-color);
+}
+.btn-stalk1 {
+	top: calc(100% - var(--current-extend));
+	left: calc(-1 * var(--current-extend));
+	border-bottom-width: 0;
+	border-left-color: transparent;
+}
+.btn-stalk2 {
+	top: calc(-1 * var(--current-extend));
+	left: calc(100% - var(--current-extend));
+	border-top-color: transparent;
+	border-right-width: 0;
+}
+
+.btn[disabled] {
+	--btn-inside-color: var(--ui-color1);
+	pointer-events: none;
+}
+
+/* Important buttons */
+.important-btn {--btn-inside-color: var(--ui-color3);}
+
+.important-btn .btn-inside {
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	font-family: var(--font2);
+	font-size: 1rem !important;
+	font-weight: 100;
+	font-style: italic;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.important-btn[disabled] .btn-inside,
+.important-btn[disabled] .btn-stalk {--current-extend: 0rem;}
+/* .important-btn[disabled] .btn-inside {background: var(--ui-color1);} */
+.important-btn[disabled] .important-btn-text1 {display: flex;}
+.important-btn[disabled] .important-btn-text2 {display: none;}
+
+.important-btn .important-btn-text1 {display: none;}
+.important-btn .important-btn-text2 {display: flex;}
+
+.important-btn svg {height: 1rem;}
+
+/* Grid buttons */
+.btn-grid {
+	--columns: 5;
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(var(--columns), auto);
+	padding: var(--input-border-width);
+	padding-bottom: 0;
+	padding-right: 0;
+}
+.btn-grid .btn-inside {
+	width: calc(100% + var(--input-border-width));
+	height: calc(100% + var(--input-border-width));
+}
+.btn-grid .btn-stalk1 {
+	top: calc(100% - var(--current-extend));
+	left: calc(-1 * var(--current-extend) - var(--input-border-width));
+}
+.btn-grid .btn-stalk2 {
+	top: calc(-1 * var(--current-extend) - var(--input-border-width));
+	left: calc(100% - var(--current-extend));
+}
+
+
+
+/** Tiles */
+.tile {
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: var(--tile-width);
+	height: calc(var(--tile-ratio) * var(--tile-width));
+	background: var(--tile-bg-color);
+	color: var(--tile-font-color);
+	border: var(--input-border-width) solid var(--tile-border-color);
+	overflow: hidden;
+}
+.tile, .tile * {
+	transition: transform 0.05s;
+	-webkit-transition: transform 0.05s;
+	will-change: top, bottom, left, right, transform;
+}
+
+.tile-inside {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.tile-letter {
+	flex-grow: 1;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: calc(0.73 * var(--tile-width));
+	font-weight: 800;
+	line-height: 0.8;
+	/* background: pink; */
+}
+[data-char-count="2"] {font-size: calc(0.55 * var(--tile-width));}
+.tile [data-char-count="2"] {padding-bottom: calc(0.1 * var(--tile-width));}
+[data-char-count="3"] {font-size: calc(0.5 * var(--tile-width));}
+.tile [data-char-count="3"] {padding-bottom: calc(0.1 * var(--tile-width));}
+
+[data-iso="ara"] .tile-letter {
+	font-size: calc(0.5 * var(--tile-width));
+	padding-bottom: calc(0.1 * var(--tile-width));
+}
+[data-letter="Щ"] .tile-letter {
+	font-size: calc(0.63 * var(--tile-width));
+	padding-bottom: calc(0.13 * var(--tile-width));
+}
+[data-iso="tam"] .tile-letter {
+	font-size: calc(0.35 * var(--tile-width));
+	font-weight: 700;
+}
+
+.tile-points {
+	text-align: right;
+	width: 100%;
+	font-size: calc(var(--tile-width) / 5);
+	font-weight: 600;
+	line-height: 1;
+	padding: calc(var(--tile-width) / 20);
+	padding-top: 0;
+}
+.tile[data-direction="rtl"] .tile-points {text-align: left;}
+
+.tile[data-state="bag"] {
+	--tile-width: calc(0.95 * var(--small-tile-width));
+	margin-top: calc(-1 * var(--input-border-width));
+	margin-left: calc(-1 * var(--input-border-width));
+}
+.tile[data-state="bag"] .tile-letter {justify-content: center;}
+.tile[data-state="bag"] .tile-points {display: none;}
+.tile[data-state="rack"] {
+	--tile-width: var(--big-tile-width);
+	position: absolute;
+	z-index: var(--z-tile-rack);
+	pointer-events: none;
+}
+.tile[data-state*="rack"]:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+	z-index: var(--z-tile-above);
+}
+.tile[data-state="dragging"] {
+	--tile-width: var(--big-tile-width);
+	position: absolute;
+	z-index: var(--z-tile-above);
+	pointer-events: none;
+}
+.tile[data-state="placed-rack"] {
+	--tile-width: var(--small-tile-width);
+	position: absolute;
+	border-color: var(--tile-placed-rack-border-color);
+	z-index: var(--z-tile-placed-rack);
+}
+.tile[data-state="placed-board"] {
+	--tile-width: var(--small-tile-width);
+	position: absolute;
+	border-color: var(--tile-bg-color);
+	z-index: var(--z-tile-placed-board);
+}
+.tile[data-state="play-order"] {
+	--tile-width: var(--play-order-tile-width);
+	position: absolute;
+	bottom: 0;
+	left: calc((100% - var(--tile-width)) / 2);
+}
+
+.tile[data-blank="true"] .tile-inside {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+}
+.tile[data-blank="true"] .tile-letter {
+	flex-grow: 0;
+	justify-content: center;
+	align-items: center;
+	opacity: 0.4;
+	width: calc(0.7 * var(--tile-width));
+	height: calc(0.7 * var(--tile-width));
+	font-size: calc(0.5 * var(--tile-width));
+}
+.tile[data-blank="true"] .tile-letter[data-char-count="2"] {font-size: calc(0.4 * var(--tile-width));}
+.tile[data-blank="true"] .tile-points {display: none;}
+.tile[data-blank="true"]:not([data-letter=""]) .tile-letter {
+	border: var(--input-border-width) solid var(--ui-color3);
+}
+
+.tile[data-player="bot"][data-state="rack"] .tile-inside {display: none;}
+
+
+
+#tilebag-bg {
+	fill: var(--ui-color1) !important;
+	stroke: none !important;
+}
