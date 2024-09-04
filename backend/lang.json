@@ -2806,13 +2806,13 @@
 
 	{
 		"exonym": "Slovenian",
-		"endonym": "Slovenščina",
+		"endonym": "slovenščina",
 		"iso": "slv",
 		"editions": [
 			{
 				"title": "Scrabble Original",
 				"lang_exonym": "Slovenian",
-				"lang_endonym": "Slovenščina",
+				"lang_endonym": "slovenščina",
 				"iso": "slv",
 				"word_list": "slv",
 				"mfr": "Mattel",
