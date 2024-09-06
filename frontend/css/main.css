@@ -327,7 +327,7 @@ input:checked + .btn .btn-stalk
 .tile[data-blank="true"] .tile-letter[data-char-count="2"] {font-size: calc(0.4 * var(--tile-width));}
 .tile[data-blank="true"] .tile-points {display: none;}
 .tile[data-blank="true"]:not([data-letter=""]) .tile-letter {
-	border: var(--input-border-width) solid var(--ui-color3);
+	border: var(--input-border-width) solid var(--tile-placed-rack-border-color);
 }
 
 .tile[data-player="bot"][data-state="rack"] .tile-inside {display: none;}
