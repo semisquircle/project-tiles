@@ -264,7 +264,7 @@ input:checked + .btn .btn-stalk
 	padding: calc(var(--tile-width) / 20);
 	padding-top: 0;
 }
-.tile[data-direction="rtl"] .tile-points {text-align: left;}
+.tile[data-script-direction="rtl"] .tile-points {text-align: left;}
 
 .tile[data-state="bag"] {
 	--tile-width: calc(0.95 * var(--small-tile-width));

@@ -2384,13 +2384,13 @@
 		"editions": [
 			{
 				"title": "Scrabble Original",
-				"lang_exonym": "Norwegian",
-				"lang_endonym": "Norsk",
+				"lang_exonym": "Norwegian Bokmål",
+				"lang_endonym": "bokmål",
 				"iso": "nob",
 				"word_list": "nob",
 				"mfr": "Mattel",
 				"year": 2024,
-				"region": "Europe",
+				"region": "Scandinavia",
 				"board": "15-scr",
 				"rack_size": 7,
 				"bot_name": "Roboto",
@@ -2430,6 +2430,28 @@
 					{"id": 3, "abbr": "DO", "text": "dobbelt ordpoeng"},
 					{"id": 4, "abbr": "TB", "text": "tredobbelt bokstavpoeng"},
 					{"id": 5, "abbr": "TO", "text": "tredobbelt ordpoeng"}
+				]
+			},
+			{
+				"title": "",
+				"lang_exonym": "Norwegian Nynorsk",
+				"lang_endonym": "nynorsk",
+				"iso": "nno",
+				"word_list": "nno",
+				"mfr": "Mattel",
+				"year": 2024,
+				"region": "Scandinavia",
+				"board": "15-scr",
+				"rack_size": 7,
+				"bot_name": "",
+
+				"alphabet": [],
+				"tile_set": [],
+				"premium_cells": [
+					{"id": 2, "abbr": "", "text": ""},
+					{"id": 3, "abbr": "", "text": ""},
+					{"id": 4, "abbr": "", "text": ""},
+					{"id": 5, "abbr": "", "text": ""}
 				]
 			}
 		]

@@ -149,7 +149,7 @@
 			</div>
 		</div>
 
-		<div class="screen play-screen" data-dialog="">
+		<div class="screen play-screen" data-dialog="" data-script-direction="" data-current-player="">
 			<div class="play-column-container">
 				<div class="play-column1">
 					<div class="score-container">
@@ -230,7 +230,9 @@
 					<div class="board-number-container"></div>
 					
 					<div class="board-column">
-						<div class="board">
+						<div class="board-container">
+							<div class="board"></div>
+
 							<div class="dialog leave-dialog">
 								<div class="dialog-text">Ditch this game?</div>
 								<div class="dialog-btn-container">
@@ -373,17 +375,17 @@
 
 	<audio class="play-music" src="frontend/audio/PlayMusic.mp3" loop></audio>
 
-	<script src="backend/js/main.js" async></script>
+	<script src="backend/js/main.js"></script>
+	<script src="backend/js/boards.js"></script>
+	<script src="backend/js/classes.js"></script>
 	<script src="backend/js/lang.js"></script>
-	<script src="backend/js/boards.js" async></script>
-	<script src="backend/js/classes.js" async></script>
 
-	<script src="frontend/js/main.js" async></script>
-	<script src="frontend/js/icons.js" async></script>
-	<script src="frontend/js/fruit.js" async></script>
+	<script src="frontend/js/main.js"></script>
+	<script src="frontend/js/icons.js"></script>
+	<script src="frontend/js/fruit.js"></script>
 	<script src="frontend/js/screens.js"></script>
-	<script src="frontend/js/play.js" async></script>
-	<script src="frontend/js/tile.js" async></script>
+	<script src="frontend/js/play.js"></script>
+	<script src="frontend/js/tile.js"></script>
 </body>
 
 </html>

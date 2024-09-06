@@ -30,6 +30,7 @@ frontend/img/
 backend/test/
 backend/word-lists/jsonl
 backend/word-lists/txt
+frontend/js/jquery.min.js
 todo.txt
 closer-look.txt
 window.html

@@ -439,8 +439,9 @@
 	grid-row-start: 2;
 }
 
+.board-container {position: relative;}
+
 .board {
-	position: relative;
 	display: grid;
 	grid-template-columns: repeat(var(--board-dimension), auto);
 	padding: calc(var(--indicator-border-width) - var(--input-border-width));
@@ -543,7 +544,7 @@
 .dialog-btn-container .btn-inside {font-size: var(--input-font-size);}
 .dialog-deny-btn {margin-left: calc(-1 * var(--input-border-width));}
 
-/* Resign */
+/* Leave */
 .leave-dialog {z-index: var(--z-tile-above);}
 
 /* Start Over */
@@ -674,3 +675,9 @@
 	opacity: 1;
 }
 [data-current-player="bot"] .player-think {display: flex;}
+
+
+
+/** Language-specific states */
+[data-script-direction="rtl"] .board,
+[data-script-direction="rtl"] .cell-abbr {transform: scaleX(-1);}

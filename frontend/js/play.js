@@ -228,7 +228,7 @@ function addToHistory(player, type, content = "") {
 			messageString = `${player.name} played ${wordsString} and scored <b>${content.score}</b> points.`;
 			break;
 		case "skip":
-			let pronoun = Game.User.name == "You" ? "your" : "their";
+			let pronoun = player.name == "You" ? "your" : "their";
 			messageString = `<i>${player.name} skipped ${pronoun} turn.</i>`;
 			break;
 		case "exchange":
@@ -271,6 +271,7 @@ function hideDialog() {
 function newGameFE() {
 	$(":root").css("--board-dimension", Game.board.length);
 	$(".play-screen").attr("data-current-player", "");
+	$(".play-screen").attr("data-script-direction", Game.scriptDirection);
 	$(".user-score-box .player-name").html(Game.User.name);
 	$(".user-score-box .player-score").html(Game.User.score);
 	$(".bot-score-box .player-name").html(Game.Bot.name);
@@ -286,9 +287,7 @@ function newGameFE() {
 	generateBoardFE();
 	generateRacksFE();
 	generateBlankOptionsFE();
-
-	// let url = "https://semishawn.github.io/project-tiles/";
-	let url = "./";
+	
 	BotWorker = new Worker(url + "backend/js/bot.js");
 	BotWorker.onmessage = e => {
 		let ply = e.data;
@@ -362,10 +361,6 @@ function gameOverFE() {
 
 	newScreen("end");
 }
-
-/* $(document).keydown(function(e) {
-	if (e.code == "Tab") gameOverFE();
-}); */
 
 
 

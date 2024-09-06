@@ -19,40 +19,38 @@ def normalize(str):
 	return filtered_text
 
 
-def snake_to_camel(str):
-	components = str.split('_')
-	return components[0] + ''.join(x.title() for x in components[1:])
-
-
-def convert_properties(obj):
-	if isinstance(obj, list):
-		return [convert_properties(item) for item in obj]
-	elif isinstance(obj, dict):
-		new_obj = {}
-		for k, v in obj.items():
-			new_key = snake_to_camel(k)
-			new_obj[new_key] = convert_properties(v) if isinstance(v, (dict, list)) else v
-		return new_obj
-	else:
-		return obj
-
-
 def lang_json_to_js(file_path):
+	def snake_to_camel(str):
+		components = str.split('_')
+		return components[0] + ''.join(x.title() for x in components[1:])
+
+	def convert_properties(obj):
+		if isinstance(obj, list):
+			return [convert_properties(item) for item in obj]
+		elif isinstance(obj, dict):
+			new_obj = {}
+			for k, v in obj.items():
+				new_key = snake_to_camel(k)
+				new_obj[new_key] = convert_properties(v) if isinstance(v, (dict, list)) else v
+			return new_obj
+		else:
+			return obj
+
 	# Reading JSON file into Python list of dictionaries
-	with open(file_path, 'r') as file:
-		json_list = json.load(file)
+	with open(file_path, 'r', encoding='utf-8') as json_file:
+		json_list = json.load(json_file)
 
 	# Filtering
 	json_list = sorted(json_list, key=lambda k: k['exonym'])
 	json_list = list(filter(lambda parent: isinstance(parent.get('editions'), list) and any('word_list' in edition for edition in parent['editions']), json_list))
-	exclude_list = ['Lojban']
+	exclude_list = ['Lojban', 'Tamil', 'Japanese']
 	json_list = [d for d in json_list if d.get('exonym') not in exclude_list]
 
 	# Converting and writing to JS
 	camel_array = convert_properties(json_list)
-	js_array = 'var languages = ' + json.dumps(camel_array) + ';'
-	with open('js/lang.js', 'w') as file:
-		file.write(js_array)
+	js_array = 'var languages = ' + json.dumps(camel_array, ensure_ascii=False) + ';'
+	with open('js/lang.js', 'w', encoding='utf-8') as js_file:
+		js_file.write(js_array)
 
 
 def word_list_jsonl_to_js(word_list):
@@ -99,9 +97,8 @@ def word_list_jsonl_to_js(word_list):
 		return True
 
 	# Read JSON file into Python list of dictionaries
-	lang_file = open('lang.json', 'r')
-	lang_list = json.load(lang_file)
-	lang_file.close()
+	with open('lang.json', 'r', encoding='utf-8') as lang_file:
+		lang_list = json.load(lang_file)
 
 	# Search for editions that use given word list
 	editions = []
@@ -117,77 +114,73 @@ def word_list_jsonl_to_js(word_list):
 	word_set = set()
 
 	# 
-	jsonl_file = open(f'word-lists/jsonl/{iso}.jsonl', 'r')
-	entry_list = [json.loads(line) for line in jsonl_file]
-	extractor = extractor_in_context(word_list)
-	find_words(entry_list, extractor)
-	for word in word_array:
-		word = format_word_in_context(word_list, word)
-		if (len(word) >= 2) and (len(word) < 15) and (not ' ' in word):
-			if not uses_valid_letters(alphabet, word): word = normalize(word)
-			if uses_valid_letters(alphabet, word): word_set.add(word)
-	jsonl_file.close()
+	with open(f'word-lists/jsonl/{iso}.jsonl', 'r', encoding='utf-8') as jsonl_file:
+		entry_list = [json.loads(line) for line in jsonl_file]
+		extractor = extractor_in_context(word_list)
+		find_words(entry_list, extractor)
+		for word in word_array:
+			word = format_word_in_context(word_list, word)
+			if (len(word) >= 2) and (len(word) < 15) and (not ' ' in word):
+				if not uses_valid_letters(alphabet, word): word = normalize(word)
+				if uses_valid_letters(alphabet, word): word_set.add(word)
 
 	#
-	js_file = open(f'word-lists/js/{word_list}.js', 'w')
-	js_file.write(f'wordLists.{word_list} = {json.dumps(sorted(word_set))};')
-	js_file.close()
+	with open(f'word-lists/js/{word_list}.js', 'w', encoding='utf-8') as js_file:
+		js_file.write(f'wordLists.{word_list} = {json.dumps(sorted(word_set), ensure_ascii=False)};')
 
 
 
 lang_json_to_js('lang.json')
 word_lists = [
-	# 'eng',
-	# 'ipa',
-	# 'old',
-
-	# 'afr',
-	# 'ara',
-	# 'bul',
-	# 'cat',
-	# 'hrv',
-	# 'cze',
-	# 'dan',
-	# 'dut',
-	# 'est',
+	'afr',
+	'ara',
+	'bul',
+	'cat',
+	'hrv',
+	'cze',
+	'dan',
+	'dut',
+	'est',
 	# 'fao',
 	# 'fin',
 
-	# 'ger',
-	# 'ger2',
+	'ger',
+	'ger2',
 
-	# 'grc',
-	# 'heb',
-	# 'hun',
-	# 'ice',
-	# 'gle',
-	# 'ita',
-	# 'lat',
-	# 'lav',
-	# 'lit',
-	# 'mlg',
+	'grc',
+	'heb',
+	'hun',
+	'ice',
+	'gle',
+	'ita',
+	'lat',
+	'lav',
+	'lit',
+	'mlg',
 
-	# 'ind',
-	# 'zsm',
+	'ind',
+	'zsm',
 
-	# 'nob',
+	'nob',
 	# 'nno',
 
-	# 'pol',
-	# 'por',
-	# 'rum',
-	# 'rus',
-	# 'gla',
-	# 'slo',
-	# 'slv',
-	# 'swe',
-	# 'tur',
-	# 'ukr',
-	# 'wel',
+	'pol',
+	'por',
+	'rum',
+	'rus',
+	'gla',
+	'slo',
+	'slv',
+	'swe',
+	'tur',
+	'ukr',
+	'wel',
 
 	# 'tam'
 	# 'bopo',
-	# 'pin'
+	# 'pin',
+	# 'ipa',
+	# 'old',
 ]
 with alive_bar(len(word_lists)) as bar:
 	for word_list in word_lists:

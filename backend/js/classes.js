@@ -1,12 +1,12 @@
 var Game = {
 	iso: null,
+	alphabet: null,
+	scriptDirection: null,
 	wordList: null,
 	WordTrie: null,
-	direction: null,
 
 	board: null,
 	premiumCells: null,
-	alphabet: null,
 
 	tileMap: null,
 	tileSet: null,
@@ -25,14 +25,14 @@ var Game = {
 
 	new: function(edition) {
 		this.iso = edition.iso;
+		this.scriptDirection = (rtlLangs.includes(this.iso)) ? "rtl" : "ltr";
+		this.alphabet = edition.alphabet;
 		this.wordList = edition.wordList;
 		this.WordTrie = new Trie(wordLists[this.wordList]);
-		this.direction = (rtlLangs.includes(this.iso)) ? "rtl" : "ltr";
 
 		let boardId = edition.board;
 		this.board = boards[boardId];
 		this.premiumCells = edition.premiumCells;
-		this.alphabet = edition.alphabet;
 
 		this.tileMap = newTileMap(this.board.length);
 		this.tileSet = edition.tileSet;
@@ -160,7 +160,7 @@ class Player {
 		Game.sortTileBag();
 	}
 
-	findScoredWord(vectorBefore, vectorAfter) {
+	findScoredWord(vectorBefore, vectorAfter, direction) {
 		let findTileClumps = vector => {
 			let clumps = [];
 			let tileStack = [];
@@ -190,7 +190,8 @@ class Player {
 		let word = {
 			single: (scoredClumps.length == 1),
 			string: scoredClumps[0].reduce((word, tile) => word + tile.letter, ""),
-			tiles: scoredClumps[0]
+			tiles: scoredClumps[0],
+			direction: direction
 		}
 
 		return word;
@@ -312,7 +313,7 @@ class Player {
 				let paraWord = this.findScoredWord(vectorBefore, vectorAfter);
 				if (paraWord.tiles.length > 1) scoredWords.push(paraWord);
 		
-				let isConnected = paraConnect || perpConnect;
+				let isConnected = (paraConnect || perpConnect);
 				let isSingleValidWord = true;
 				let invalidWord = "";
 
@@ -537,7 +538,7 @@ class Tile {
 	letter = null;
 	points = 0;
 	iso = null;
-	direction = null;
+	scriptDirection = null;
 	bagIndex = null;
 
 	rackIndex = null;
@@ -551,7 +552,7 @@ class Tile {
 		this.letter = this.blank ? null : letter;
 		this.points = Game.tileSet.find(x => x.letter == letter).points;
 		this.iso = Game.iso;
-		this.direction = Game.direction;
+		this.scriptDirection = Game.scriptDirection;
 		this.bagIndex = bagIndex;
 	}
 
@@ -562,7 +563,7 @@ class Tile {
 		this.row = null;
 		this.col = null;
 		this.exchange = false;
-		this.direction = null;
+		this.scriptDirection = null;
 	}
 }
 
