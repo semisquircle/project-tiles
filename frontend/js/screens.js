@@ -266,6 +266,10 @@ usernameTextbox.on("propertychange input", function() {
 	$(".player-intro-name-edit-container").attr("data-editing", false);
 });
 
+$(".user-intro .player-icon").on("click", function() {
+	generateUserIcon();
+});
+
 $(".player-intro-edit-icon").on("click", function() {
 	$(".player-intro-name-edit-container").attr("data-editing", true);
 	usernameTextbox.focus();

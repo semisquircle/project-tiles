@@ -241,6 +241,13 @@ input:checked + .player-intro .player-intro-goes-first {opacity: 1;}
 	--dimension: var(--player-height);
 	border-right: var(--input-border-width) solid var(--ui-color2);
 }
+.user-intro .player-icon {cursor: pointer;}
+.user-intro .player-icon svg {
+	transition: all var(--input-transition);
+	-webkit-transition: all var(--input-transition);
+	will-change: transform;
+}
+.user-intro .player-icon:hover svg {transform: scale(1.1);}
 
 .player-intro-name-wrapper {
 	margin-left: calc(1.5 * var(--player-padding));
@@ -370,7 +377,7 @@ input:checked + .player-intro .player-intro-goes-first {opacity: 1;}
 .player-intro-tilebag-text {
 	position: absolute;
 	opacity: 1;
-	top: 4.5rem;
+	top: 4.3rem;
 	width: 100%;
 	text-align: center;
 	font-family: var(--font2);
