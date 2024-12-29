@@ -112,7 +112,11 @@ function newScreen(screen) {
 }
 
 function generateUserIcon() {
-	i_user = fruit[Math.floor(Math.random() * fruit.length)];
+	i_userIndexPrev = i_userIndex;
+	do {
+		i_userIndex = Math.floor(Math.random() * fruit.length);
+	} while (i_userIndex == i_userIndexPrev);
+	i_user = fruit[i_userIndex];
 	$(".user-intro .player-icon").html(i_user);
 	$(".user-score-box .player-icon").html(i_user);
 	$(".user-end .player-icon").html(i_user);

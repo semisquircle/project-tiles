@@ -69,4 +69,4 @@ var i_watermelon = `
 `;
 
 var fruit = [i_apple, i_cherry, i_cranberry, i_durian, i_lemon, i_orange, i_pear, i_plum, i_watermelon];
-var i_user;
+var i_userIndex, i_userIndexPrev, i_user;
