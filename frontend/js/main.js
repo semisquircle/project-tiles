@@ -10,8 +10,8 @@ var tileBagContainer = $(".tilebag-tiles-container");
 var tileBagDispenser = $(".tilebag-dispenser");
 var historyContainer = $(".play-history-scroll-container");
 
-var url = "https://semiopteryx.github.io/project-tiles/";
-// let url = "./";
+// var url = "https://semiopteryx.github.io/project-tiles/";
+var url = "./";
 
 
 
@@ -137,6 +137,36 @@ $(document).ready(function() {
 let music = $(".play-music")[0];
 var musicAccessGranted = false;
 var musicPlaying = false;
+
+function repositionTilesFE() {
+	$(".tile").each(function() {
+		let player = $(this).attr("data-player");
+		let state = $(this).attr("data-state");
+		let rackIndex = $(this).attr("data-rack-index");
+		let exchange = $(this).attr("data-exchange") == "true";
+
+		if (state == "rack" && !exchange) {
+			let rackIndex = $(this).attr("data-rack-index");
+			let correspondingSlot = $(`.${player}-rack-tiles .tile-slot`).eq(rackIndex);
+			$(this).moveTo(correspondingSlot, 0);
+		}
+		else if (state == "rack" && exchange) {
+			let correspondingSlot = $(".exchange-dialog .tile-slot").eq(rackIndex);
+			$(this).moveTo(correspondingSlot, 0);
+		}
+		else if (state == "placed-rack" || state == "placed-board") {
+			let row = $(this).attr("data-row");
+			let col = $(this).attr("data-col");
+			let correspondingCell = $(`.cell[data-row="${row}"][data-col="${col}"]`);
+			$(this).moveTo(correspondingCell, 0);
+		}
+		else if (state == "play-order") {
+			let correspondingSlot = $(`.${player}-intro .player-intro-tile-slot`);
+			$(this).moveTo(correspondingSlot, 0);
+		}
+	});
+}
+
 window.addEventListener("message", function(e) {
 	let data = JSON.parse(e.data);
 
@@ -154,25 +184,9 @@ window.addEventListener("message", function(e) {
 		musicPlaying = !musicPlaying;
 	}
 	else if (data.type == "toggleFullscreen") {
-		$(".tile").each(function() {
-			let player = $(this).attr("data-player");
-			let state = $(this).attr("data-state");
-
-			if (state == "rack") {
-				let rackIndex = $(this).attr("data-rack-index");
-				let correspondingSlot = $(`.${player}-rack-tiles .tile-slot`).eq(rackIndex);
-				$(this).moveTo(correspondingSlot, 0);
-			}
-			else if (state == "placed-rack" || state == "placed-board") {
-				let row = $(this).attr("data-row");
-				let col = $(this).attr("data-col");
-				let correspondingCell = $(`.cell[data-row="${row}"][data-col="${col}"]`);
-				$(this).moveTo(correspondingCell, 0);
-			}
-			else if (state == "play-order") {
-				let correspondingSlot = $(`.${player}-intro .player-intro-tile-slot`);
-				$(this).moveTo(correspondingSlot, 0);
-			}
-		});
+		setTimeout(function() {
+			repositionTilesFE();
+			setTimeout(repositionTilesFE, 900);
+		}, 900);
 	}
 });

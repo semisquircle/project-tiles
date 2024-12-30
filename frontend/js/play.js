@@ -187,7 +187,11 @@ function applyPlayFE(player, play) {
 			let correspondingTile = $(`.tile[data-player="bot"][data-state="rack"][data-rack-index="${rackIndex}"]`);
 			let correspondingCell = $(`.cell[data-row="${tile.row}"][data-col="${tile.col}"]`);
 
-			correspondingTile.attr("data-state", "placed-rack");
+			correspondingTile.attr({
+				"data-state": "placed-rack",
+				"data-row": tile.row,
+				"data-col": tile.col
+			});
 			if (blank) correspondingTile.changeLetterFE(tile.letter);
 
 			setTimeout(function() {
