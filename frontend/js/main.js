@@ -10,8 +10,8 @@ var tileBagContainer = $(".tilebag-tiles-container");
 var tileBagDispenser = $(".tilebag-dispenser");
 var historyContainer = $(".play-history-scroll-container");
 
-// var url = "https://semiopteryx.github.io/project-tiles/";
-var url = "./";
+var url = "https://semiopteryx.github.io/project-tiles/";
+// var url = "./";
 
 
 
