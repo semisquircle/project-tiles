@@ -140,7 +140,10 @@ var musicPlaying = false;
 window.addEventListener("message", function(e) {
 	let data = JSON.parse(e.data);
 
-	if (data.type == "toggleAudio") {
+	if (data.type == "changeTheme") {
+		$("body").attr("data-theme", data.theme);
+	}
+	else if (data.type == "toggleAudio") {
 		if (!musicAccessGranted) {
 			music.play();
 			$("body").click();
@@ -150,8 +153,26 @@ window.addEventListener("message", function(e) {
 		music.volume = (musicPlaying) ? 0 : 0.2;
 		musicPlaying = !musicPlaying;
 	}
+	else if (data.type == "toggleFullscreen") {
+		$(".tile").each(function() {
+			let player = $(this).attr("data-player");
+			let state = $(this).attr("data-state");
 
-	else if (data.type == "changeTheme") {
-		$("body").attr("data-theme", data.theme);
+			if (state == "rack") {
+				let rackIndex = $(this).attr("data-rack-index");
+				let correspondingSlot = $(`.${player}-rack-tiles .tile-slot`).eq(rackIndex);
+				$(this).moveTo(correspondingSlot, 0);
+			}
+			else if (state == "placed-rack" || state == "placed-board") {
+				let row = $(this).attr("data-row");
+				let col = $(this).attr("data-col");
+				let correspondingCell = $(`.cell[data-row="${row}"][data-col="${col}"]`);
+				$(this).moveTo(correspondingCell, 0);
+			}
+			else if (state == "play-order") {
+				let correspondingSlot = $(`.${player}-intro .player-intro-tile-slot`);
+				$(this).moveTo(correspondingSlot, 0);
+			}
+		});
 	}
 });
