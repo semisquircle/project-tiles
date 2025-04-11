@@ -681,5 +681,4 @@
 /** Language-specific states */
 [data-script-direction="rtl"] .board,
 [data-script-direction="rtl"] .cell-abbr {transform: scaleX(-1);}
-[data-iso="bopo"] .cell-abbr,
-[data-iso="pin"] .cell-abbr {font-size: calc(0.6 * var(--input-font-size));}
+[data-iso="chi"] .cell-abbr {font-size: calc(0.6 * var(--input-font-size));}
