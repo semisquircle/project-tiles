@@ -276,6 +276,7 @@ function newGameFE() {
 	$(":root").css("--board-dimension", Game.board.length);
 	$(".play-screen").attr("data-current-player", "");
 	$(".play-screen").attr("data-script-direction", Game.scriptDirection);
+	$(".play-screen").attr("data-iso", Game.iso);
 	$(".user-score-box .player-name").html(Game.User.name);
 	$(".user-score-box .player-score").html(Game.User.score);
 	$(".bot-score-box .player-name").html(Game.Bot.name);
