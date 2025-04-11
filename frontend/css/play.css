@@ -381,6 +381,7 @@
 	border-right: 0;
 	border-radius: 0;
 	outline: none;
+	appearance: none;
 	-webkit-appearance: none;
 }
 .play-history-textbox::placeholder {
@@ -681,4 +682,4 @@
 /** Language-specific states */
 [data-script-direction="rtl"] .board,
 [data-script-direction="rtl"] .cell-abbr {transform: scaleX(-1);}
-[data-iso="chi"] .cell-abbr {font-size: calc(0.6 * var(--input-font-size)) !important;}
+[data-iso="chi"] .cell-abbr {font-size: calc(0.75 * var(--input-font-size)) !important;}
