@@ -14,7 +14,7 @@ var eId = null;
 
 
 
-//* Title screen
+//* Title
 var logoLetters = [
 	["T", "ת", "ت", "ट", "た", "タ"],
 	["I", "Í", "И", "い", "イ"],
@@ -60,7 +60,7 @@ $(".title-play-btn").on("click", function() {
 
 
 
-//* Lang screen
+//* Language
 for (let i = 0; i < languages.length; i++) {
 	let langExonym = languages[i].exonym;
 	let langEndonym = languages[i].endonym;
@@ -98,7 +98,7 @@ contBtnLang.on("click", function() {
 
 
 
-//* Edition screen
+//* Edition
 function generateEditionsScreen() {
 	let langExonym = languages[lId].exonym;
 	let langEndonym = languages[lId].endonym;
@@ -188,7 +188,7 @@ $("body").on("click", ".edition-option", function() {
 
 
 
-//* Players screen
+//* Player Intros
 var usernameTextbox = $(".user-intro .player-intro-name");
 var usernameCharLimit = 10;
 var lastValidName = "";
@@ -331,7 +331,7 @@ $(".bot-difficulty").click(function() {
 
 
 
-//* End screen
+//* End
 $(".rematch-btn").on("click", function() {
 	Game.new(languages[lId].editions[eId]);
 

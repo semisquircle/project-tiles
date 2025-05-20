@@ -480,6 +480,7 @@ $(".recall-btn").on("click", function() {
 $(".exchange-btn").on("click", function() {
 	// Game.User.recallTiles();
 	// recallTilesFE(Game.User);
+	$(".exchange-dialog .dialog-confirm-btn").attr("disabled", true);
 	showDialog("exchange");
 });
 $(".exchange-dialog .dialog-confirm-btn").on("click", function() {

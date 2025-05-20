@@ -148,5 +148,8 @@ $(".play-screen").on("click", TileDrag.selector, function() {
 		tile.exchange = !exchange;
 		$this.attr("data-exchange", !exchange);
 		$this.moveTo(correspondingSlot, TileFE.moveDurFast);
+
+		let isExchanging = Game.User.rackTiles.some(tile => tile.exchange);
+		$(".exchange-dialog .dialog-confirm-btn").attr("disabled", !isExchanging);
 	}
 });
